@@ -1,8 +1,8 @@
 name: Daily YouTube Stats
 on:
   schedule:
-    - cron: '0 12 * * *' # 한국 시간으로 매일 저녁 9시 (UTC 12:00)
-  workflow_dispatch: # 직접 버튼 눌러서 실행하고 싶을 때 사용
+    - cron: '0 12 * * *' # 매일 저녁 9시 실행
+  workflow_dispatch: # 직접 실행 버튼 활성화
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
           python-version: '3.9'
 
       - name: 필요한 도구 설치
-       run: pip install google-api-python-client notion-client
+        run: pip install google-api-python-client notion-client
 
       - name: 로봇 실행
         env:
