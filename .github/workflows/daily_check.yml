@@ -1,0 +1,26 @@
+name: Daily YouTube Stats
+on:
+  schedule:
+    - cron: '0 12 * * *' # 한국 시간으로 매일 저녁 9시 (UTC 12:00)
+  workflow_dispatch: # 직접 버튼 눌러서 실행하고 싶을 때 사용
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 코드 가져오기
+        uses: actions/checkout@v3
+
+      - name: 파이썬 설치
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 필요한 도구 설치
+        run: pip install google-api-python-client
+
+      - name: 로봇 실행
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+        run: python main.py
