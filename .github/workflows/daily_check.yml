@@ -17,10 +17,12 @@ jobs:
           python-version: '3.9'
 
       - name: 필요한 도구 설치
-        run: pip install google-api-python-client
+       run: pip install google-api-python-client notion-client
 
       - name: 로봇 실행
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: python main.py
